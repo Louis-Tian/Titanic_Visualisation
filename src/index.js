@@ -4,7 +4,6 @@ import Canvas from './Canvas';
 
 const App = () => (
   <div>
-    <h1>Surviving Titanic</h1>
     <Canvas />
   </div>
 );
