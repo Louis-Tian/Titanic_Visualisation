@@ -14,6 +14,26 @@ export default function init(canvas, data) {
   Typed.new('#typed', { strings: [text] });
 
   /* Axes ----------------------------------------------- */
+  const symbols = canvas.append('g').attr('id', 'symbols')
+    .style('fill-opacity', 0)
+
+  symbols.append('text')
+    .attr('x', width / 4)
+    .attr('y', height / 4)
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '18pt')
+    .style('fill', 'teal')
+    .text('\uf222');
+
+  symbols.append('text')
+    .attr('x', 3 * width / 4)
+    .attr('y', height / 4)
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '18pt')
+    .style('fill', 'pink')
+    .text('\uf221');
+
+  /* Axes ----------------------------------------------- */
   const xAxis = d3.axisBottom(xScale).tickValues(_.range(0, 90, 10));
 
   const yAxis = d3.axisLeft(yScale).tickValues(_.range(5, 25, 5));
@@ -41,6 +61,7 @@ export default function init(canvas, data) {
     .text('# Passenger')
     .attr('text-anchor', 'middle')
     .attr('transform', `translate(${width / 2}, ${height / 2 - radius * 2 * 20 - 10})`);
+
   axes.append('text')
     .classed('axisLabel', true)
     .text('Age')
@@ -91,13 +112,21 @@ export default function init(canvas, data) {
     .filter(d => (d.Survived === 'died'))
     .classed('died', true);
 
+  canvas.selectAll('.passenger')
+    .filter(d => (d.Age <= 16))
+    .classed('children', true);
+
+  canvas.selectAll('.passenger')
+    .filter(d => (d.Adult > 16))
+    .classed('adult', true);
+
   const dance = () => {
     canvas.selectAll('.passenger')
       .transition()
       .duration(5000)
       .ease(d3.easeLinear)
       .attr('cx', () => _.random(0, width))
-      .attr('cy', () => _.random(0, height))
+      .attr('cy', () => _.random(0, height));
   }
   dance();
   window.dance = setInterval(dance, 5000)

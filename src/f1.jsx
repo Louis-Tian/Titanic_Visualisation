@@ -9,6 +9,9 @@ export default function f1(canvas) {
 
   const f = canvas.transition().duration(3000);
 
+  canvas.select('#symbols')
+    .style('fill-opacity', 1);
+
   f.selectAll('.passenger')
     .attr('fill', d => ((d.Sex === 'male') ? 'teal' : 'pink'));
 

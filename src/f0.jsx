@@ -17,7 +17,10 @@ export default function f0(canvas) {
 
   canvas.selectAll('.passenger')
     .attr('fill', 'grey')
-    .style('fill-opacity', 0)
+    .style('fill-opacity', 0);
+
+  canvas.select('#symbols')
+    .style('fill-opacity', 0);
 
   canvas.selectAll('.passenger')
     .transition()
