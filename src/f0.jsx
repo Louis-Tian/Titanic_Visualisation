@@ -12,6 +12,10 @@ export default function f0(canvas) {
   `;
   Typed.new('#typed', { strings: [text] });
 
+  const threeSymbols = canvas
+    .select('#threeSymbols')
+    .style('fill-opacity', 0);
+
   canvas.selectAll('.axes')
     .style('opacity', 0);
 

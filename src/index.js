@@ -1,13 +1,14 @@
 import React from 'react';
 import _ from 'lodash';
 import { groupBy } from './utils';
-import { height, width, radius, padding } from './parameters';
+import { height, width, radius } from './parameters';
 import init from './init';
 import f0 from './f0';
 import f1 from './f1';
 import f2 from './f2';
 import f3 from './f3';
 import f4 from './f4';
+import f5 from './f5';
 
 const canvas = d3.select('#svg')
   .attr('width', width - radius)
@@ -40,7 +41,7 @@ d3.csv('./titanic.csv', (csv) => {
   init(canvas, data);
 
   let n = 0;
-  const frames = [f0, f1, f2, f3, f4];
+  const frames = [f0, f1, f2, f3, f4, f5];
   document.onclick = () => {
     frames[n % frames.length](canvas);
     n = n + 1;

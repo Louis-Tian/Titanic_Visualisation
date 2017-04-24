@@ -13,9 +13,17 @@ export default function init(canvas, data) {
   `;
   Typed.new('#typed', { strings: [text] });
 
-  /* Axes ----------------------------------------------- */
+  /* Female vs Male Symbol ----------------------------------------------- */
   const symbols = canvas.append('g').attr('id', 'symbols')
     .style('fill-opacity', 0)
+
+  symbols.append('text')
+    .attr('x', 3 * width / 4)
+    .attr('y', height / 4)
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '18pt')
+    .style('fill', 'pink')
+    .text('\uf221');
 
   symbols.append('text')
     .attr('x', width / 4)
@@ -25,9 +33,33 @@ export default function init(canvas, data) {
     .style('fill', 'teal')
     .text('\uf222');
 
-  symbols.append('text')
-    .attr('x', 3 * width / 4)
-    .attr('y', height / 4)
+  /* Child, Female and Male Symbol ----------------------------------------------- */
+  const threeSymbols = canvas.append('g')
+    .attr('id', 'threeSymbols')
+    .style('fill-opacity', 0);
+
+  threeSymbols.append('text')
+    .attr('class', 'child symbol')
+    .attr('x', 0.25 * width)
+    .attr('y', height / 2)
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '18pt')
+    .style('fill', 'grey')
+    .text('\uf1ae');
+
+  threeSymbols.append('text')
+    .attr('class', 'female symbol')
+    .attr('x', 0.75 * width)
+    .attr('y', height / 2)
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '18pt')
+    .style('fill', 'teal')
+    .text('\uf222');
+
+  threeSymbols.append('text')
+    .attr('class', 'male symbol')
+    .attr('x', 0.5 * width)
+    .attr('y', height / 2)
     .style('font-family', 'FontAwesome')
     .style('font-size', '18pt')
     .style('fill', 'pink')
@@ -114,10 +146,10 @@ export default function init(canvas, data) {
 
   canvas.selectAll('.passenger')
     .filter(d => (d.Age <= 16))
-    .classed('children', true);
+    .classed('child', true);
 
   canvas.selectAll('.passenger')
-    .filter(d => (d.Adult > 16))
+    .filter(d => (d.Age > 16))
     .classed('adult', true);
 
   const dance = () => {
