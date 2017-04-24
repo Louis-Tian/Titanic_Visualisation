@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+* {
+  font-family: "Open Sans";
+}
+
+.container {
+  width: 100%;
+  min-width: 1256.6px;
+}
+
+#svg {
+  margin: auto;
+  display: block;
+}
+
+h1 {
+  font-size: 30pt;
+  font-weight: 500;
+  margin: 15px;
+  color: teal;
+}
+
+h2 {
+  font-size: 18pt;
+  margin: 0px;
+}
+
+.hint {
+  font-size: 12pt;
+  font-family: monospace;
+  color: grey;
+}
+
+#textbox{
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+#typed {
+  font-size: 12pt;
+  text-align: center;
+}
+
+.typed-cursor {
+  font-size: 12pt;
+  font-family: 'Open Sans';
+  text-align: center;
+}
+
+.axisLable {
+  font-size: 10pt,
+}
+
+.keyword {
+  font-size: 20pt;
+  font-weight: 600;
+  color: deeppink;
+}
+
+.tooltip {
+  font-size: 12pt;
+  color: teal
+}
+
+
+/* Type Cursor */
+.typed-cursor{
+	opacity: 1;
+	-webkit-animation: blink 0.7s infinite;
+	-moz-animation: blink 0.7s infinite;
+	animation: blink 0.7s infinite;
+}
+@keyframes blink{
+	0% { opacity:1; }
+	50% { opacity:0; }
+	100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+	0% { opacity:1; }
+	50% { opacity:0; }
+	100% { opacity:1; }
+}
+@-moz-keyframes blink{
+	0% { opacity:1; }
+	50% { opacity:0; }
+	100% { opacity:1; }
+}

@@ -2,10 +2,15 @@
 <head>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/1.1.7/typed.min.js"></script>
-  <link href="/style.css" rel="stylesheet"/>
+  <link href="./style.css" rel="stylesheet"/>
 </head>
 <body>
-  <div id="root"></div>
-  <script src="/bundle.js"></script>
+  <div className="container">
+    <svg id="svg" />
+    <div id="textbox">
+      <span id="typed" />
+    </div>
+  </div>
+  <script src="./bundle.js"></script>
 </body>
 </html>
