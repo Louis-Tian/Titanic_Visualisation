@@ -82,6 +82,10 @@
 
 	var _f10 = _interopRequireDefault(_f9);
 
+	var _f11 = __webpack_require__(46);
+
+	var _f12 = _interopRequireDefault(_f11);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var canvas = d3.select('#svg').attr('width', _parameters.width - _parameters.radius).attr('height', _parameters.height - _parameters.radius).append('g').attr('id', 'canvas');
@@ -111,7 +115,7 @@
 	  (0, _init2.default)(canvas, data);
 
 	  var n = 0;
-	  var frames = [_f2.default, _f4.default, _f6.default, _f8.default, _f10.default];
+	  var frames = [_f2.default, _f4.default, _f6.default, _f8.default, _f10.default, _f12.default];
 	  document.onclick = function () {
 	    frames[n % frames.length](canvas);
 	    n = n + 1;
@@ -21585,6 +21589,22 @@
 	  var text = '\n    <h2>A Visual Exploration<h2/>\n    <h1>Surviving Titanic</h1><br>\n    <span class=\'hint\'>Press ENTER to start...</span>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 
+	  /* Female vs Male Symbol ----------------------------------------------- */
+	  var symbols = canvas.append('g').attr('id', 'symbols').style('fill-opacity', 0);
+
+	  symbols.append('text').attr('x', 3 * _parameters.width / 4).attr('y', _parameters.height / 4).style('font-family', 'FontAwesome').style('font-size', '18pt').style('fill', 'pink').text('\uF221');
+
+	  symbols.append('text').attr('x', _parameters.width / 4).attr('y', _parameters.height / 4).style('font-family', 'FontAwesome').style('font-size', '18pt').style('fill', 'teal').text('\uF222');
+
+	  /* Child, Female and Male Symbol ----------------------------------------------- */
+	  var threeSymbols = canvas.append('g').attr('id', 'threeSymbols').style('fill-opacity', 0);
+
+	  threeSymbols.append('text').attr('class', 'child symbol').attr('x', 0.25 * _parameters.width).attr('y', _parameters.height / 2).style('font-family', 'FontAwesome').style('font-size', '18pt').style('fill', 'grey').text('\uF1AE');
+
+	  threeSymbols.append('text').attr('class', 'female symbol').attr('x', 0.75 * _parameters.width).attr('y', _parameters.height / 2).style('font-family', 'FontAwesome').style('font-size', '18pt').style('fill', 'teal').text('\uF222');
+
+	  threeSymbols.append('text').attr('class', 'male symbol').attr('x', 0.5 * _parameters.width).attr('y', _parameters.height / 2).style('font-family', 'FontAwesome').style('font-size', '18pt').style('fill', 'pink').text('\uF221');
+
 	  /* Axes ----------------------------------------------- */
 	  var xAxis = d3.axisBottom(xScale).tickValues(_lodash2.default.range(0, 90, 10));
 
@@ -21599,6 +21619,7 @@
 	  axes.append('g').attr('class', 'axis yAxis').attr('transform', 'translate(' + (_parameters.width / 2 + _parameters.radius) + ', ' + (_parameters.height / 2 - _parameters.radius * 2 * 20) + ')').call(yAxis);
 
 	  axes.append('text').classed('axisLabel', true).text('# Passenger').attr('text-anchor', 'middle').attr('transform', 'translate(' + _parameters.width / 2 + ', ' + (_parameters.height / 2 - _parameters.radius * 2 * 20 - 10) + ')');
+
 	  axes.append('text').classed('axisLabel', true).text('Age').attr('text-anchor', 'middle').attr('transform', 'translate(' + _parameters.width / 2 + ', ' + (_parameters.height / 2 + 30) + ')');
 
 	  axes.style('opacity', 0);
@@ -21632,6 +21653,14 @@
 	    return d.Survived === 'died';
 	  }).classed('died', true);
 
+	  canvas.selectAll('.passenger').filter(function (d) {
+	    return d.Age <= 16;
+	  }).classed('child', true);
+
+	  canvas.selectAll('.passenger').filter(function (d) {
+	    return d.Age > 16;
+	  }).classed('adult', true);
+
 	  var dance = function dance() {
 	    canvas.selectAll('.passenger').transition().duration(5000).ease(d3.easeLinear).attr('cx', function () {
 	      return _lodash2.default.random(0, _parameters.width);
@@ -21663,9 +21692,13 @@
 	  var text = '\n    On 10 April 1912, <br>\n    RMS Titanic set sail for its her maiden voyage <br>\n    from Southampton to New York City <br>\n    with estimated <span class=\'keyword\'>1,317</span> passengers onboard. <br>\n    <span class=\'hint\'>Press ENTER to continue...</span>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 
+	  var threeSymbols = canvas.select('#threeSymbols').style('fill-opacity', 0);
+
 	  canvas.selectAll('.axes').style('opacity', 0);
 
 	  canvas.selectAll('.passenger').attr('fill', 'grey').style('fill-opacity', 0);
+
+	  canvas.select('#symbols').style('fill-opacity', 0);
 
 	  canvas.selectAll('.passenger').transition().duration(1000).attr('cx', function (d, i) {
 	    return 2 * _parameters.radius * (i % _parameters.maxAges + 1) + _parameters.width / 4;
@@ -21692,6 +21725,8 @@
 	  Typed.new('#typed', { strings: [text] });
 
 	  var f = canvas.transition().duration(3000);
+
+	  canvas.select('#symbols').style('fill-opacity', 1);
 
 	  f.selectAll('.passenger').attr('fill', function (d) {
 	    return d.Sex === 'male' ? 'teal' : 'pink';
@@ -21726,20 +21761,18 @@
 	var _init = __webpack_require__(40);
 
 	function f2(canvas) {
-	  var text = '\n    Most of the passenger are young and middle-age adult.<br/>\n    <span class=\'hint\'>Press ENTER to continue...</span>\n  ';
+	  var text = '\n    Most of the passenger are young and middle-age adult.<br/>\n    <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 
 	  var f = canvas.transition().duration(3000);
 
-	  f.selectAll('.male').attr('cx', function (d) {
+	  f.selectAll('.male.passenger').attr('cx', function (d) {
 	    return 2 * _parameters.radius * (d.Age + 1);
 	  }).attr('cy', function (d) {
 	    return 0.5 * _parameters.height - 2 * _parameters.radius * d.order;
 	  });
-	  // .attr('cx', d => xScale(2 * radius * (d.Age + 1)))
-	  // .attr('cy', d => yScale(0.5 * height - 2 * radius * d.order));
 
-	  f.selectAll('.female').attr('cx', function (d) {
+	  f.selectAll('.female.passenger').attr('cx', function (d) {
 	    return 2 * _parameters.radius * (d.Age + 1) + _parameters.width / 2;
 	  }).attr('cy', function (d) {
 	    return 0.5 * _parameters.height - 2 * _parameters.radius * d.order;
@@ -21762,20 +21795,20 @@
 	var _parameters = __webpack_require__(39);
 
 	function f3(canvas) {
-	  var text = '\n    At 11:40 p.m. (ship\'s time) on 14 April,<br>\n    the Titanic struck an iceberg and sank about three hours after.<br>\n    Only <span class="keyword">492</span> passengers survived, mostly women, children.<br/>\n    <span class=\'hint\'>Press ENTER to continue...</span>\n  ';
+	  var text = '\n    At 11:40 p.m. (ship\'s time) on 14 April,<br>\n    the Titanic struck an iceberg and sank about three hours after.<br>\n    Only <span class="keyword">492</span> passengers survived.<br/>\n    <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 
 	  var f = canvas.transition().duration(3000);
 
-	  f.selectAll('.died').style('fill-opacity', 0.5);
+	  f.selectAll('.died.passenger').style('fill-opacity', 0.5);
 
-	  f.selectAll('.male').attr('cx', function (d) {
+	  f.selectAll('.male.passenger').attr('cx', function (d) {
 	    return 2 * _parameters.radius * (d.Age + 1);
 	  }).attr('cy', function (d) {
 	    return 0.5 * _parameters.height - 2 * _parameters.radius * d.after_order;
 	  });
 
-	  f.selectAll('.female').attr('cx', function (d) {
+	  f.selectAll('.female.passenger').attr('cx', function (d) {
 	    return 2 * _parameters.radius * (d.Age + 1) + _parameters.width / 2;
 	  }).attr('cy', function (d) {
 	    return 0.5 * _parameters.height - 2 * _parameters.radius * d.after_order;
@@ -21804,7 +21837,80 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function f4(canvas, data) {
-	  var text = '\n  END. <br> <i>Press any key to restart.</i>\n  ';
+	  var text = '\n  Women had the highest chance of survival.<br>\n  Just a little over half of the children onboard survived.<br>\n  <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
+	  Typed.new('#typed', { strings: [text] });
+
+	  var rowSize = _parameters.maxAges * 2 / 3 / 2;
+
+	  var transition = canvas.transition();
+
+	  transition.duration(1000).select('.axes').style('opacity', 0);
+	  transition.duration(1000).select('#symbols').style('opacity', 0);
+
+	  var ncol = 30;
+
+	  transition.delay(1000).duration(2000).selectAll('.child.survived.passenger').attr('cx', function (x, i) {
+	    return i % ncol * _parameters.radius * 2 + 0.25 * _parameters.width - _parameters.radius * 2 * ncol / 2;
+	  }).attr('cy', function (x, i) {
+	    return _parameters.height * 0.35 - Math.floor(i / ncol) * _parameters.radius * 2;
+	  }).attr('fill', 'grey');
+
+	  transition.delay(1000).duration(2000).selectAll('.child.died.passenger').attr('cx', function (x, i) {
+	    return i % ncol * _parameters.radius * 2 + 0.25 * _parameters.width - _parameters.radius * 2 * ncol / 2;
+	  }).attr('cy', function (x, i) {
+	    return Math.floor(i / ncol) * _parameters.radius * 2 + _parameters.height * 0.6;
+	  }).attr('fill', 'grey');
+
+	  transition.delay(3000).duration(2000).selectAll('.female.adult.survived.passenger').attr('cx', function (x, i) {
+	    return i % ncol * _parameters.radius * 2 + 0.5 * _parameters.width - _parameters.radius * 2 * ncol / 2;
+	  }).attr('cy', function (x, i) {
+	    return _parameters.height * 0.35 - Math.floor(i / ncol) * _parameters.radius * 2;
+	  });
+
+	  transition.delay(3000).duration(2000).selectAll('.female.adult.died.passenger').attr('cx', function (x, i) {
+	    return i % ncol * _parameters.radius * 2 + 0.5 * _parameters.width - _parameters.radius * 2 * ncol / 2;
+	  }).attr('cy', function (x, i) {
+	    return Math.floor(i / ncol) * _parameters.radius * 2 + _parameters.height * 0.6;
+	  });
+
+	  transition.delay(5000).duration(2000).selectAll('.male.adult.survived.passenger').attr('cx', function (x, i) {
+	    return i % ncol * _parameters.radius * 2 + _parameters.width / 4 * 3 - _parameters.radius * 2 * ncol / 2;
+	  }).attr('cy', function (x, i) {
+	    return _parameters.height * 0.35 - Math.floor(i / ncol) * _parameters.radius * 2;
+	  });
+
+	  transition.delay(5000).duration(2000).selectAll('.male.adult.died.passenger').attr('cx', function (x, i) {
+	    return i % ncol * _parameters.radius * 2 + _parameters.width / 4 * 3 - _parameters.radius * 2 * ncol / 2;
+	  }).attr('cy', function (x, i) {
+	    return Math.floor(i / ncol) * _parameters.radius * 2 + _parameters.height * 0.6;
+	  });
+
+	  transition.delay(7000).duration(1000).select('#threeSymbols').style('fill-opacity', 1);
+	}
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = f4;
+
+	var _lodash = __webpack_require__(36);
+
+	var _lodash2 = _interopRequireDefault(_lodash);
+
+	var _utils = __webpack_require__(38);
+
+	var _parameters = __webpack_require__(39);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function f4(canvas, data) {
+	  var text = '\n  The END. <br> <i>Press any key to restart.</i>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 	}
 

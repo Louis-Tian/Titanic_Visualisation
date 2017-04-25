@@ -13,6 +13,42 @@ export default function init(canvas, data) {
   `;
   Typed.new('#typed', { strings: [text] });
 
+  /* heart symbols */
+  canvas.append('text')
+    .attr('class', 'dead heart symbol')
+    .attr('x', 0.5 * width)
+    .attr('y', 0.1 * height)
+    .attr('text-anchor', 'middle')
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '16pt')
+    .style('fill', 'grey')
+    .style('fill-opacity', 1)
+    .style('visibility', 'hidden')
+    .text('\uf08a');
+
+  canvas.append('text')
+    .attr('class', 'live heart symbol')
+    .attr('x', 0.5 * width)
+    .attr('y', 0.1 * height)
+    .attr('text-anchor', 'middle')
+    .style('font-family', 'FontAwesome')
+    .style('font-size', '16pt')
+    .style('fill', 'red')
+    .style('fill-opacity', 1)
+    .style('visibility', 'hidden')
+    .text('\uf21e');
+
+  // Heart Beat Animation
+  setInterval(() => {
+    canvas.selectAll('.live.heart.symbol')
+      .transition()
+      .duration(1000)
+      .style('font-size', '18pt')
+      .transition()
+      .duration(1000)
+      .style('font-size', '16pt');
+  }, 1000);
+
   /* Female vs Male Symbol ----------------------------------------------- */
   const symbols = canvas.append('g').attr('id', 'symbols')
     .style('fill-opacity', 0)
@@ -85,14 +121,14 @@ export default function init(canvas, data) {
 
   axes.append('g')
     .attr('class', 'axis yAxis')
-    .attr('transform', `translate(${width / 2 + radius}, ${height / 2 - radius * 2 * 20})`)
+    .attr('transform', `translate(${radius}, ${height / 2 - radius * 2 * 20})`)
     .call(yAxis);
 
   axes.append('text')
     .classed('axisLabel', true)
     .text('# Passenger')
-    .attr('text-anchor', 'middle')
-    .attr('transform', `translate(${width / 2}, ${height / 2 - radius * 2 * 20 - 10})`);
+    .attr('text-anchor', 'left')
+    .attr('transform', `translate(${radius}, ${height / 2 - radius * 2 * 20 - 10}) rotate(90, 0, 0)`);
 
   axes.append('text')
     .classed('axisLabel', true)
