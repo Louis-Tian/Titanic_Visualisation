@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-* {
+body {
   font-family: "Open Sans";
 }
 
@@ -49,8 +49,8 @@ h2 {
   text-align: center;
 }
 
-.axisLable {
-  font-size: 8pt,
+text.axisLabel {
+  font-size: 8pt;
 }
 
 .keyword {

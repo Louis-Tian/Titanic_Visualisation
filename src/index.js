@@ -1,18 +1,27 @@
-import React from 'react';
+/* global d3 */
+
 import _ from 'lodash';
 import { groupBy } from './utils';
-import { height, width, radius } from './parameters';
-import init from './init';
-import f0 from './f0';
-import f1 from './f1';
-import f2 from './f2';
-import f3 from './f3';
-import f4 from './f4';
-import f5 from './f5';
+import { height, width, margin } from './parameters';
+
+import Axes from './components/Axes';
+import GenderSymbols from './components/GenderSymbols';
+import GroupSymbols from './components/GroupSymbols';
+import HeartSymbols from './components/HeartSymbols';
+import Passengers from './components/Passengers';
+
+import intro from './frames/intro';
+import f0 from './frames/f0';
+import f1 from './frames/f1';
+import f2 from './frames/f2';
+import f3 from './frames/f3';
+import f4 from './frames/f4';
+import f5 from './frames/f5';
 
 const canvas = d3.select('#svg')
-  .attr('width', width - radius)
-  .attr('height', height - radius)
+  .attr('width', width)
+  .attr('height', height)
+  .attr('transform', `translate(${margin.left}, ${margin.top})`)
   .append('g')
   .attr('id', 'canvas');
 
@@ -38,17 +47,25 @@ d3.csv('./titanic.csv', (csv) => {
     },
   );
 
-  init(canvas, data);
-
-  let n = 0;
-  const frames = [f0, f1, f2, f3, f4, f5];
-  document.onclick = () => {
-    frames[n % frames.length](canvas);
-    n = n + 1;
+  const components = {
+    axes: new Axes(canvas, data),
+    genderSymbols: new GenderSymbols(canvas, data),
+    groupSymbols: new GroupSymbols(canvas, data),
+    heartSymbols: new HeartSymbols(canvas, data),
+    passengers: new Passengers(canvas, data),
   };
 
-  document.addEventListener('keydown', function(event) {
-    frames[n % frames.length](canvas, data);
+  intro(components);
+
+  let n = 0;
+  const frames = [ f0, f1, f2, f3, f4, f5 ]
+  // document.onclick = () => {
+  //   frames[n % frames.length](canvas);
+  //   n = n + 1;
+  // };
+  //
+  document.addEventListener('keydown', () => {
+    frames[n % frames.length](components);
     n = n + 1;
   });
 });
