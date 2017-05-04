@@ -1,9 +1,10 @@
 {
-  "name": "pbs.geospatial",
+  "name": "udacity_p6_titanic",
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "dev-server": "./node_modules/.bin/webpack-dev-server"
+    "dev-server": "./node_modules/.bin/webpack-dev-server",
+    "build": "./node_modules/.bin/webpack"
   },
   "author": "Louis Tian",
   "license": "ISC",
