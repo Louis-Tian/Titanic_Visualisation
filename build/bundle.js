@@ -111,6 +111,7 @@
 	    return d.Sex && d.Age;
 	  });
 
+	  // Transform data
 	  _lodash2.default.forEach(data, function (passenger) {
 	    passenger.Age = passenger.Age ? Math.round(Number(passenger.Age)) : null;
 	    passenger.Survived = passenger.Survived === '1' ? 'survived' : 'died';
@@ -128,6 +129,7 @@
 	    });
 	  });
 
+	  //
 	  var components = {
 	    axes: new _Axes2.default(canvas, data),
 	    genderSymbols: new _GenderSymbols2.default(canvas, data),
@@ -140,11 +142,6 @@
 
 	  var n = 0;
 	  var frames = [_f2.default, _f4.default, _f6.default, _f8.default, _f10.default, _f12.default];
-	  // document.onclick = () => {
-	  //   frames[n % frames.length](canvas);
-	  //   n = n + 1;
-	  // };
-	  //
 	  document.addEventListener('keydown', function () {
 	    frames[n % frames.length](components);
 	    n = n + 1;
@@ -17479,7 +17476,7 @@
 
 	    this.element = canvas.append('g').attr('id', 'group-symbols').style('visibility', 'hidden').style('font-family', 'FontAwesome').style('font-size', '18pt').style('fill', 'grey');
 
-	    this.element.append('text').attr('class', 'child symbol').attr('text-anchor', 'middle').style('fill', 'grey').text('\uF1AE');
+	    this.element.append('text').attr('class', 'child symbol').attr('text-anchor', 'middle').style('fill', 'gold').text('\uF1AE');
 
 	    this.element.append('text').attr('class', 'female symbol').attr('text-anchor', 'middle').style('fill', 'pink').text('\uF222');
 
@@ -17744,20 +17741,19 @@
 	    key: 'byGroup',
 	    value: function byGroup() {
 	      var nCol = 20;
-	      var f = this.passengers.transition().delay(1000).duration(1500);
+	      var f = this.passengers.transition().duration(4000);
 	      f.filter('.child.survived.passenger').attr('cx', function (x, i) {
 	        return i % nCol * _parameters.radius * 2 + 0.25 * _parameters.width - _parameters.radius * 2 * nCol / 2;
 	      }).attr('cy', function (x, i) {
 	        return _parameters.height * 0.35 - Math.floor(i / nCol) * _parameters.radius * 2;
-	      }).style('fill', 'grey');
+	      }).style('fill', 'gold');
 
 	      f.filter('.child.died.passenger').attr('cx', function (x, i) {
 	        return i % nCol * _parameters.radius * 2 + 0.25 * _parameters.width - _parameters.radius * 2 * nCol / 2;
 	      }).attr('cy', function (x, i) {
 	        return Math.floor(i / nCol) * _parameters.radius * 2 + _parameters.height * 0.6;
-	      }).style('fill', 'grey');
+	      }).style('fill', 'gold');
 
-	      f = f.transition().delay(1000).duration(1500);
 	      f.filter('.female.adult.survived.passenger').attr('cx', function (x, i) {
 	        return i % nCol * _parameters.radius * 2 + 0.5 * _parameters.width - _parameters.radius * 2 * nCol / 2;
 	      }).attr('cy', function (x, i) {
@@ -17770,7 +17766,6 @@
 	        return Math.floor(i / nCol) * _parameters.radius * 2 + _parameters.height * 0.6;
 	      });
 
-	      f = f.transition().delay(1000).duration(1500);
 	      f.filter('.male.adult.survived.passenger').attr('cx', function (x, i) {
 	        return i % nCol * _parameters.radius * 2 + _parameters.width / 4 * 3 - _parameters.radius * 2 * nCol / 2;
 	      }).attr('cy', function (x, i) {
@@ -17922,7 +17917,7 @@
 	exports.default = f4;
 	/* global Typed */
 	function f4(components) {
-	  var text = '\n  Women had the highest chance of survival.<br>\n  Just a little over half of the children onboard survived.<br>\n  <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
+	  var text = '\n  Women had the highest chance of survival.<br>\n  Just a little over half of the children onboard survived.<br>\n  Mens had less than 20% of the chance to survive. <br>\n  <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 
 	  var axes = components.axes,
@@ -17932,7 +17927,7 @@
 
 	  axes.hide(1000);
 	  heartSymbols.hide(1000);
-	  groupSymbols.show(1000);
+	  groupSymbols.show(3000);
 	  passengers.byGroup(3000);
 	}
 

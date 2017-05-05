@@ -28,6 +28,7 @@ const canvas = d3.select('#svg')
 d3.csv('./titanic.csv', (csv) => {
   const data = _.filter(csv, d => (d.Sex && d.Age));
 
+  // Transform data
   _.forEach(data, (passenger) => {
     passenger.Age = (passenger.Age ? Math.round(Number(passenger.Age)) : null);
     passenger.Survived = (passenger.Survived === '1' ? 'survived' : 'died');
@@ -47,6 +48,7 @@ d3.csv('./titanic.csv', (csv) => {
     },
   );
 
+  //
   const components = {
     axes: new Axes(canvas, data),
     genderSymbols: new GenderSymbols(canvas, data),
@@ -59,11 +61,6 @@ d3.csv('./titanic.csv', (csv) => {
 
   let n = 0;
   const frames = [ f0, f1, f2, f3, f4, f5 ]
-  // document.onclick = () => {
-  //   frames[n % frames.length](canvas);
-  //   n = n + 1;
-  // };
-  //
   document.addEventListener('keydown', () => {
     frames[n % frames.length](components);
     n = n + 1;

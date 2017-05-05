@@ -14,7 +14,7 @@ export default class GroupSymbols {
     this.element.append('text')
       .attr('class', 'child symbol')
       .attr('text-anchor', 'middle')
-      .style('fill', 'grey')
+      .style('fill', 'gold')
       .text('\uf1ae');
 
     this.element.append('text')

@@ -145,18 +145,17 @@ export default class Passengers {
 
   byGroup() {
     const nCol = 20;
-    let f = this.passengers.transition().delay(1000).duration(1500);
+    let f = this.passengers.transition().duration(4000);
     f.filter('.child.survived.passenger')
       .attr('cx', (x, i) => (i % nCol) * radius * 2 + 0.25 * width - radius * 2 * nCol / 2)
       .attr('cy', (x, i) => height * 0.35 - Math.floor(i / nCol) * radius * 2 )
-      .style('fill', 'grey');
+      .style('fill', 'gold');
 
     f.filter('.child.died.passenger')
       .attr('cx', (x, i) => (i % nCol) * radius * 2 + 0.25 * width - radius * 2 * nCol / 2)
       .attr('cy', (x, i) => Math.floor(i / nCol) * radius * 2 + height * 0.6)
-      .style('fill', 'grey');
+      .style('fill', 'gold');
 
-    f = f.transition().delay(1000).duration(1500);
     f.filter('.female.adult.survived.passenger')
       .attr('cx', (x, i) => (i % nCol) * radius * 2 + 0.5 * width - radius * 2 * nCol / 2)
       .attr('cy', (x, i) => height * 0.35 - Math.floor(i / nCol) * radius * 2)
@@ -165,7 +164,6 @@ export default class Passengers {
       .attr('cx', (x, i) => (i % nCol) * radius * 2 + 0.5 * width - radius * 2 * nCol / 2)
       .attr('cy', (x, i) => Math.floor(i / nCol) * radius * 2 + height * 0.6)
 
-    f = f.transition().delay(1000).duration(1500);
     f.filter('.male.adult.survived.passenger')
       .attr('cx', (x, i) => (i % nCol) * radius * 2 + width / 4 * 3 - radius * 2 * nCol / 2)
       .attr('cy', (x, i) => height * 0.35 - Math.floor(i / nCol) * radius * 2);

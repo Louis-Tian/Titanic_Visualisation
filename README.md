@@ -1,7 +1,11 @@
 # Surviving Titanic - A Visual Exploration
 
-__Gist: __https://bl.ocks.org/Louis-Tian/raw/d198911987ee0f3ece848f19cf3dc1da/
-__GitHub: __https://github.com/Louis-Tian/Titanic_Visualisation
+*Gist:*
+    >latest: https://bl.ocks.org/Louis-Tian/raw/d198911987ee0f3ece848f19cf3dc1da/
+    v1 (first submission):  https://bl.ocks.org/Louis-Tian/raw/d198911987ee0f3ece848f19cf3dc1da/7a14c95fa29a0529d35407399a18acf3abb54f48
+    v0: https://bl.ocks.org/Louis-Tian/raw/051feb6dccb43f06709a6aa35ca4671d/b0e99572e6370d0e800d488beac7ba2563fbb75c
+
+*GitHub:* https://github.com/Louis-Tian/Titanic_Visualisation
 
 ## SUMMARY
 This is a simple data visualization demo powered by `d3.js` using the Titanic passenger data obtained
@@ -28,7 +32,7 @@ visual encoding and gives each scene a very strong focus.
 I complemented the visualization with animated text scripts to make the entire page more appealing.
 
 ## Feedback
-__1. My fiancée __
+1. My fiancée
 
 She dislike the y-axis mostly due to aesthetic reason. She think the meaning is obvious and self explanatory.
 

@@ -40,13 +40,13 @@ export default class heartSymbols {
       .attr('x', 0.5 * width)
       .attr('y', 0.25 * height)
       .style('fill', 'grey')
-      .style('visibility', 'hidden')
+      .style('visibility', 'hidden');
 
     this.live
       .attr('x', 0.5 * width)
       .attr('y', 0.25 * height)
       .style('fill', 'red')
-      .style('visibility', 'hidden')
+      .style('visibility', 'hidden');
   }
 
   show(duration) {
@@ -55,7 +55,7 @@ export default class heartSymbols {
       .duration(duration)
       .attr('fill-opacity', 1)
       .transition()
-      .call(this.startHeartBeat.bind(this))
+      .call(this.startHeartBeat.bind(this));
 
     this.died
       .style('visibility', 'visible')
@@ -65,7 +65,7 @@ export default class heartSymbols {
   }
 
   hide(duration) {
-    this.stopHeartBeat()
+    this.stopHeartBeat();
     this.live.transition()
       .duration(duration)
       .style('fill-opacity', 0)
