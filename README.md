@@ -1,11 +1,9 @@
 # Surviving Titanic - A Visual Exploration
 
-*Gist:*
-    >latest: https://bl.ocks.org/Louis-Tian/raw/d198911987ee0f3ece848f19cf3dc1da/
-    v1 (first submission):  https://bl.ocks.org/Louis-Tian/raw/d198911987ee0f3ece848f19cf3dc1da/7a14c95fa29a0529d35407399a18acf3abb54f48
-    v0: https://bl.ocks.org/Louis-Tian/raw/051feb6dccb43f06709a6aa35ca4671d/b0e99572e6370d0e800d488beac7ba2563fbb75c
+*Gist :: *  https://bl.ocks.org/Louis-Tian/raw/b1cc4365a0897d30e3c17aad744ed363/15ef7a0f7954a370f1a056d1aa519e13ec1b1b01/
 
-*GitHub:* https://github.com/Louis-Tian/Titanic_Visualisation
+
+*GitHub ::* https://github.com/Louis-Tian/Titanic_Visualisation
 
 ## SUMMARY
 This is a simple data visualization demo powered by `d3.js` using the Titanic passenger data obtained
@@ -53,6 +51,12 @@ I hope this is helpful. i'm looking forward to seeing the next iteration.
 * Given the feedbacks, I have made some significant changes. I removed the y-axis, as I do the visualization more visually appealing without it. And I do believe that for most people the meaning of the vertical axis is obvious.
 * A lot of icons are added to serve as the purpose of 'legend', and to explain the meaning of each animation more. An beating heart icon is added to the particular animation where my mom get a little confused.
 * In light of CtrlAltDel's comments, additional final animation is added to clearly separate out the 'children', 'women' and 'men' group, directly supporting the final comments made.
+
+## Previous iteration
+|version| link|
+|-|-|
+|v1 (first submission): | https://bl.ocks.org/Louis-Tian/raw/d198911987ee0f3ece848f19cf3dc1da/7a14c95fa29a0529d35407399a18acf3abb54f48 |
+| v0: | https://bl.ocks.org/Louis-Tian/raw/051feb6dccb43f06709a6aa35ca4671d/b0e99572e6370d0e800d488beac7ba2563fbb75c|
 
 ## Resource
 This visualization is inspired by

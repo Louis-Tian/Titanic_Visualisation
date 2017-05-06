@@ -17917,7 +17917,7 @@
 	exports.default = f4;
 	/* global Typed */
 	function f4(components) {
-	  var text = '\n  Women had the highest chance of survival.<br>\n  Just a little over half of the children onboard survived.<br>\n  Mens had less than 20% of the chance to survive. <br>\n  <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
+	  var text = '\n  Women had the highest chance of survival.<br>\n  Just a little over half of the children onboard survived.<br>\n  Men had less than 20% of the chance to survive. <br>\n  <span class=\'hint\'>Press ENTER to continue...</span><br>\n  ';
 	  Typed.new('#typed', { strings: [text] });
 
 	  var axes = components.axes,

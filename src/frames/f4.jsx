@@ -3,7 +3,7 @@ export default function f4(components) {
   const text = `
   Women had the highest chance of survival.<br>
   Just a little over half of the children onboard survived.<br>
-  Mens had less than 20% of the chance to survive. <br>
+  Men had less than 20% of the chance to survive. <br>
   <span class='hint'>Press ENTER to continue...</span><br>
   `;
   Typed.new('#typed', { strings: [text] });
